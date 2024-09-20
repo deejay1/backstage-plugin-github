@@ -19,6 +19,7 @@ Now in the below steps, I will assume you are already done with the provider.
 ```shell
 yarn add –cwd packages/app @statusneo/backstage-plugin-github
 ```
+
 2. add this to the app/src/apis.ts
 
 ```javascript
@@ -55,10 +56,8 @@ import { GithubPullRequestsCard, GithubActionsCard } from '@statusneo/backstage-
 5. If you are using a GitHub enterprise edition, you can pass your instance url through app-config.yml
 
 ```yaml
-
 gh-plugin:
   url: ${GITHUB_ENTERPRISE_URL}
-
 ```
 
 Now you are ready to use this Backstage GitHub plugin to make your software management and development cycle a little more hassle-free.

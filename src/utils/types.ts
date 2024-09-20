@@ -47,9 +47,23 @@ export type Repository = {
   description: string;
   created_at: string;
   updated_at: string;
-}
+};
 
-export type Status = 'completed' | 'action_required' | 'cancelled' | 'failure' | 'neutral' | 'skipped' | 'stale' | 'success' | 'timed_out' | 'in_progress' | 'queued' | 'requested' | 'waiting' | 'pending'
+export type Status =
+  | 'completed'
+  | 'action_required'
+  | 'cancelled'
+  | 'failure'
+  | 'neutral'
+  | 'skipped'
+  | 'stale'
+  | 'success'
+  | 'timed_out'
+  | 'in_progress'
+  | 'queued'
+  | 'requested'
+  | 'waiting'
+  | 'pending';
 
 export type WorkflowRun = {
   id: string;
@@ -72,7 +86,7 @@ export type WorkflowRunJob = {
   workflow_name: string;
   head_branch: string;
   html_url: string;
-  status: Status
+  status: Status;
   conclusion: string;
   started_at: string;
   completed_at: string;
@@ -89,30 +103,29 @@ export type JobStep = {
   completed_at: string;
 };
 
-
 export type WorkflowRunApiRequest = {
   repoPath: string;
   page: number;
   per_page: number;
-}
+};
 
 export type WorkflowRunApiResponse = {
-  total_count: number,
-  workflow_runs: WorkflowRun[]
-}
+  total_count: number;
+  workflow_runs: WorkflowRun[];
+};
 
 export type WorkflowRunJobApiRequest = {
   repoPath: string;
   run_id: string;
-}
+};
 
 export type WorkflowRunJobApiResponse = {
   total_count: number;
-  jobs: WorkflowRunJob[]
-}
+  jobs: WorkflowRunJob[];
+};
 
 export type UserRepositoryApiRequest = {
   type: 'owner' | 'member' | 'public' | 'private';
-}
+};
 
-export type UserRepositoryApiResponse = Repository[]
+export type UserRepositoryApiResponse = Repository[];

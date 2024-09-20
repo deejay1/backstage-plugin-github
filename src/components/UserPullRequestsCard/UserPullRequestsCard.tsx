@@ -7,12 +7,15 @@ import { CustomTable } from '../CustomTable';
 import { withQueryClient } from '../../hoc/withQueryClient';
 import { UserContext, withUser } from '../../hoc/UserProvider';
 
-
 const UserPullRequests = () => {
-  const columns:TableColumn<PullRequest>[] = useMemo(()=>[titleColumn, repositoryColumn, authorColumn], [])
-  const [searchText, setSearchText] = useState<string>("")
+  const columns: TableColumn<PullRequest>[] = useMemo(
+    () => [titleColumn, repositoryColumn, authorColumn],
+    [],
+  );
+  const [searchText, setSearchText] = useState<string>('');
 
-  const { isSignedIn, isInitialized, signIn, user } = React.useContext(UserContext);
+  const { isSignedIn, isInitialized, signIn, user } =
+    React.useContext(UserContext);
 
   const [page, setPage] = useState<number>(0);
   const [pageSize, setPageSize] = useState<number>(5);
@@ -21,18 +24,18 @@ const UserPullRequests = () => {
     isSignedIn && !!user,
     {
       q: `type:pr+involves:${user?.login}+${searchText} in:title,body,comments`,
-      page: page+1,
+      page: page + 1,
       per_page: pageSize,
     },
   );
 
-    useEffect(()=>{
-    refetch()
-  }, [user, refetch])
+  useEffect(() => {
+    refetch();
+  }, [user, refetch]);
 
   return (
     <CustomTable<PullRequest>
-      title='Pull Requests'
+      title="Pull Requests"
       subtitle={user?.login}
       columns={columns}
       user={user}
@@ -51,13 +54,11 @@ const UserPullRequests = () => {
       setPageSize={setPageSize}
       isSearchAvailable
       setSearchText={setSearchText}
-      searchPlaceholder='search'
-      searchTooltip='search in title, body and comments'
+      searchPlaceholder="search"
+      searchTooltip="search in title, body and comments"
       columnsButton
     />
   );
 };
-
-
 
 export const UserPullRequestsCard = withQueryClient(withUser(UserPullRequests));

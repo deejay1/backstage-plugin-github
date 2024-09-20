@@ -1,0 +1,5 @@
+app:
+  title: 'GitHub plugin'
+
+backend:
+  baseUrl: localhost:3000

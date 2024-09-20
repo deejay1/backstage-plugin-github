@@ -1,10 +1,7 @@
-import {
-  Table,
-  TableColumn
-} from '@backstage/core-components';
+import { Table, TableColumn } from '@backstage/core-components';
 import { BackstageTheme } from '@backstage/theme';
 import { MTablePagination, MTableHeader } from '@material-table/core';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import React from 'react';
 import { UserProfile } from '../../utils/types';
 import { SignInContent } from '../SignInContent';
@@ -72,7 +69,7 @@ CustomTable.defaultProps = {
   pageSize: 0,
   page: 1,
   select: false,
-  columnsButton: false
+  columnsButton: false,
 };
 
 const StyledMTableHeader = withStyles(

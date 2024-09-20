@@ -1,6 +1,8 @@
 import { Avatar, TableColumn } from '@backstage/core-components';
-import { Box, Typography, Tooltip } from '@material-ui/core';
-import Link from '@material-ui/core/Link';
+import Box from '@mui/material/Box';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import React from 'react';
 import { PullRequest } from '../../utils/types';
 import { StatusClosed, StatusOpen } from './Icons';
@@ -26,7 +28,7 @@ export const titleColumn: TableColumn<PullRequest> = {
       <>
         {/* @ts-ignore */}
         <Box ml={1} component="span">
-          <Link href={row.html_url} target="_blank">
+          <Link href={row.html_url} target="_blank" underline="hover">
             {row.title}
           </Link>
         </Box>
@@ -42,7 +44,7 @@ export const authorColumn: TableColumn<PullRequest> = {
   sorting: false,
   render: (row: PullRequest) => (
     <Tooltip title={row.user?.login}>
-      <Link href={row.user?.html_url} target="_blank">
+      <Link href={row.user?.html_url} target="_blank" underline="hover">
         <Avatar
           customStyles={{
             height: 32,

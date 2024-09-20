@@ -41,7 +41,7 @@ export function useUserRepos() {
       setRepos([...ownerRepos, ...memberOfRepos]);
     } else if (ownerRepos) {
       setRepos([...ownerRepos]);
-    } else if(memberOfRepos){
+    } else if (memberOfRepos) {
       setRepos([...memberOfRepos]);
     }
   }, [ownerRepos, memberOfRepos]);
