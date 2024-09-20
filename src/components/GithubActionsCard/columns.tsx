@@ -1,6 +1,6 @@
 import React from 'react';
-import { TableColumn  } from '@backstage/core-components';
-import { Typography } from '@material-ui/core';
+import { TableColumn } from '@backstage/core-components';
+import Typography from '@mui/material/Typography';
 import { WorkflowRun } from '../../utils/types';
 
 export const workflow_title: TableColumn<WorkflowRun> = {
@@ -20,9 +20,9 @@ export const workflow_title: TableColumn<WorkflowRun> = {
       }}
       title={row.display_title}
     >
-        {row.display_title}
+      {row.display_title}
     </Typography>
-  )
+  ),
 };
 
 export const workflow_status: TableColumn<WorkflowRun> = {

@@ -36,7 +36,8 @@ export class GithubClient implements GithubApi {
     const query = new URLSearchParams(params);
 
     const baseUrl: string =
-      this.configApi.getOptionalString('gh-plugin.url') || 'https://api.github.com/';
+      this.configApi.getOptionalString('gh-plugin.url') ||
+      'https://api.github.com/';
 
     const url = new URL(
       `${path}?${query.toString().replaceAll('%2B', '+')}`,

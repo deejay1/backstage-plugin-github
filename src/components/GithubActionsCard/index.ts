@@ -1,1 +1,1 @@
-export * from './GithubActionsCard'
+export * from './GithubActionsCard';

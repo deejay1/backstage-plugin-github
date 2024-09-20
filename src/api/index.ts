@@ -1,2 +1,2 @@
-export * from "./GithubApi";
-export * from "./GithubClient";
+export * from './GithubApi';
+export * from './GithubClient';

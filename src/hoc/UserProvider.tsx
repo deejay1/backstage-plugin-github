@@ -1,20 +1,20 @@
 import React from 'react';
-import { useAsync } from 'react-use';
+import useAsync from 'react-use/lib/useAsync';
 import { useAuthUser } from '../hooks/useAuthUser';
 import { useSignIn } from '../hooks/useSignIn';
 
-type UserContextType = ReturnType<typeof useSignIn> & ReturnType<typeof useAuthUser>;
+type UserContextType = ReturnType<typeof useSignIn> &
+  ReturnType<typeof useAuthUser>;
 
 export const UserContext = React.createContext<UserContextType>({
   isSignedIn: false,
   isInitialized: false,
   signIn: async () => {},
-  user: null
+  user: null,
 });
 
 export function withUser(Component: React.FunctionComponent) {
-  return function (props: any) {
-
+  return function Wrapper(props: any) {
     const { isSignedIn, isInitialized, signIn } = useSignIn();
     useAsync(async () => signIn(true), [signIn]);
     const { user } = useAuthUser(isSignedIn);
@@ -25,7 +25,7 @@ export function withUser(Component: React.FunctionComponent) {
           isSignedIn,
           isInitialized,
           signIn,
-          user
+          user,
         }}
       >
         <Component {...props} />

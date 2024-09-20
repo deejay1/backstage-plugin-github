@@ -4,7 +4,7 @@ import {
   fetchApiRef,
   createApiFactory,
   createComponentExtension,
-  configApiRef
+  configApiRef,
 } from '@backstage/core-plugin-api';
 import { githubApiRef, GithubClient } from './api';
 
@@ -13,7 +13,11 @@ export const backstageGithubPlugin = createPlugin({
   apis: [
     createApiFactory({
       api: githubApiRef,
-      deps: { authApi: githubAuthApiRef, fetchApi: fetchApiRef, configApi: configApiRef },
+      deps: {
+        authApi: githubAuthApiRef,
+        fetchApi: fetchApiRef,
+        configApi: configApiRef,
+      },
       factory(deps) {
         return new GithubClient(deps);
       },
@@ -38,9 +42,7 @@ export const GithubActionsCard = backstageGithubPlugin.provide(
     name: 'GithubActionsCard',
     component: {
       lazy: () =>
-        import('./components/GithubActionsCard').then(
-          m => m.GithubActionsCard,
-        ),
+        import('./components/GithubActionsCard').then(m => m.GithubActionsCard),
     },
   }),
 );

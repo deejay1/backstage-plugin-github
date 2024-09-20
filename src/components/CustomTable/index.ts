@@ -1,1 +1,1 @@
-export * from "./CustomTable"
+export * from './CustomTable';

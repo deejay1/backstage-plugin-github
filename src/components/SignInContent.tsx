@@ -15,7 +15,8 @@
  */
 
 import React from 'react';
-import { Box, Button } from '@material-ui/core';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 type Props = {
   handleAuthClick: React.MouseEventHandler<HTMLElement>;

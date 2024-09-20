@@ -1,26 +1,46 @@
 {
   "name": "@statusneo/backstage-plugin-github",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "license": "ISC",
   "publishConfig": {
-    "access": "public",
-    "main": "dist/index.esm.js",
-    "types": "dist/index.d.ts"
+    "access": "public"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./alpha": "./src/alpha.tsx",
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "alpha": [
+        "src/alpha.tsx"
+      ],
+      "package.json": [
+        "package.json"
+      ]
+    }
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/StatusNeo/backstage-plugin-github"
+    "url": "https://github.com/StatusNeo/backstage-plugin-github",
+    "directory": "."
   },
   "backstage": {
-    "role": "frontend-plugin"
+    "role": "frontend-plugin",
+    "pluginId": "backstage-statusneo-plugin-github",
+    "pluginPackages": [
+      "@statusneo/backstage-plugin-github"
+    ]
   },
   "author": {
     "email": "reach@statusneo.com",
     "url": "https://statusneo.com/",
     "name": "statusneo"
   },
+  "prettier": "@spotify/prettier-config",
+  "sideEffects": false,
   "scripts": {
     "start": "backstage-cli package start",
     "build": "backstage-cli package build",
@@ -28,39 +48,82 @@
     "test": "backstage-cli package test",
     "clean": "backstage-cli package clean",
     "prepack": "backstage-cli package prepack",
-    "postpack": "backstage-cli package postpack"
+    "postpack": "backstage-cli package postpack",
+    "fix": "backstage-cli repo fix --publish",
+    "tsc": "tsc",
+    "tsc:full": "tsc --skipLibCheck false --incremental false",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
   "dependencies": {
-    "@backstage/core-components": "^0.13.3",
-    "@backstage/core-plugin-api": "^1.3.0",
-    "@backstage/errors": "^1.1.4",
-    "@backstage/theme": "^0.2.16",
-    "@material-table/core": "v3.1.0",
-    "@material-ui/core": "^4.12.2",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@backstage/core-compat-api": "^0.3.0",
+    "@backstage/core-components": "^0.15.0",
+    "@backstage/core-plugin-api": "^1.9.4",
+    "@backstage/errors": "^1.2.4",
+    "@backstage/frontend-plugin-api": "^0.8.0",
+    "@backstage/plugin-catalog-react": "^1.13.0",
+    "@backstage/theme": "^0.5.7",
+    "@material-table/core": "6.4.4",
+    "@mui/icons-material": "^5.15.17",
+    "@mui/lab": "^5.0.0-alpha.170",
+    "@mui/material": "^5.15.17",
+    "@mui/styles": "^5.15.17",
     "@tanstack/react-query": "^4.32.6",
-    "react-use": "^17.2.4"
-  },
-  "peerDependencies": {
-    "react": "^16.13.1 || ^17.0.0",
-    "react-dom": "^16.13.1 || ^17.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react-use": "^17.4.0"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.22.1",
-    "@backstage/core-app-api": "^1.4.0",
-    "@backstage/dev-utils": "^1.0.11",
-    "@backstage/test-utils": "^1.2.4",
-    "@testing-library/jest-dom": "^5.10.1",
-    "@testing-library/react": "^12.1.3",
+    "@backstage/cli": "^0.27.1",
+    "@backstage/core-app-api": "^1.15.0",
+    "@backstage/dev-utils": "^1.1.0",
+    "@backstage/test-utils": "^1.6.0",
+    "@spotify/eslint-plugin": "^15.0.0",
+    "@spotify/prettier-config": "^15.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.0.0",
-    "@types/node": "*",
+    "@types/aria-query": "^5.0.4",
+    "@types/node": "^18.17.8",
     "cross-fetch": "^3.1.5",
-    "msw": "^1.2.3"
+    "eslint": "^8.6.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-unused-imports": "^3.1.0",
+    "lint-staged": "^13.0.3",
+    "msw": "^1.2.3",
+    "prettier": "^2.2.1",
+    "react": "^18.0.2",
+    "react-dom": "^18.0.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "typescript": "^5.5.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn tsc:full",
+      "yarn lint:fix",
+      "yarn prettier:fix"
+    ],
+    "*.{js,jsx}": [
+      "yarn lint:fix",
+      "yarn prettier:fix"
+    ],
+    "*.{mjs,cjs}": "yarn lint:fix",
+    "*.{json,md,yml,yaml}": "yarn prettier:fix"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^18.0.2",
+    "react-dom": "^18.0.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0"
   },
   "files": [
     "dist"
   ],
+  "resolutions": {
+    "@types/react": "^18",
+    "@types/react-dom": "^18"
+  },
   "contributors": [
     {
       "email": "abhaysoni.developer@gmail.com",

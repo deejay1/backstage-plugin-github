@@ -1,2 +1,2 @@
 export { GithubActionsCard, GithubPullRequestsCard } from './plugin';
-export * from './api'
+export * from './api';
